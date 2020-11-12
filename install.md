@@ -40,4 +40,9 @@ Package operations: 14 installs, 2 updates, 0 removals
 > 需要安装2次
 
 ### cd pytradesim
+```
+mkdir logs
+./market_data.py
+./server.py
+```
 
