@@ -8,6 +8,11 @@ python -m venv .venv
 ```
 pip install poetry
 ```
+#### install python library
+```
+poetry install
+```
+
 ```
 (.venv) ➜  pytradesimulator git:(master) poetry install
 Installing dependencies from lock file
@@ -31,11 +36,7 @@ Package operations: 14 installs, 2 updates, 0 removals
   • Installing pytest (5.4.1)
   • Installing quickfix (1.15.1): Installing...
   ```
-
-#### install python library
-```
-poetry install
-```
+  
 > 需要安装2次
 
 ### cd pytradesim
