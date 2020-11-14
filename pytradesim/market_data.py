@@ -50,7 +50,7 @@ def main(port=9000, debug=None):
     try:
         acceptor.start()
 
-        logger.info("FIX.4.2 maarket data server started.")
+        logger.info("FIX.4.2 market data server started.")
         logger.debug(f"Starting listener on port {port}.")
 
         conn = Listener(address, authkey=b"Dj$0.Jkx1@").accept()
