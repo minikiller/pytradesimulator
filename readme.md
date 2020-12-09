@@ -36,3 +36,10 @@ Enter choice :-
 3. Delete order
 > 
 ```
+
+### doc
+https://neerajkaushik1980.wordpress.com/2012/04/22/quickfix-connect-multiple-fix-sessions-with-fix-server/
+
+### fix 4.4
+
+https://github.com/quickfix/quickfix/blob/master/spec/FIX44.xml
