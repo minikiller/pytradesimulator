@@ -30,7 +30,7 @@ Running market data client and market data adapter.
 
 .. code-block:: bash
 
-    $ ./market_client.py configs/mdclient1.cfg
+    $ ç
     $ ./market_data.py
 
 
