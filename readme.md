@@ -43,3 +43,9 @@ https://neerajkaushik1980.wordpress.com/2012/04/22/quickfix-connect-multiple-fix
 ### fix 4.4
 
 https://github.com/quickfix/quickfix/blob/master/spec/FIX44.xml
+
+### print fix message
+```
+cd pytradesim
+python fixprinter.py --spec spec/FIX42.xml --f test.txt
+```
