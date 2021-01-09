@@ -223,7 +223,7 @@ class Orderbook:
 
 class MatchingEngine:
     def timestamp(self):
-        return time.time() * 1e6
+        return time.time() * 1e3
 
 
 class Trade(MatchingEngine):

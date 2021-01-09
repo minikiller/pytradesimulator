@@ -33,7 +33,7 @@ class BaseApplication(fix.Application):
 ORDER_TABLE = {}
 
 
-class Client(BaseApplication):
+class UserClient(BaseApplication):
     def set_logging(self, logger):
         self.logger = logger
 
@@ -58,6 +58,7 @@ class Client(BaseApplication):
 
     def process(self, message, sessionID):
         self.logger.debug("Processing message.")
+        print(message.__str__().replace("\x01", "|"))
         msgtype = fix.MsgType()
         exectype = fix.ExecType()
         message.getHeader().getField(msgtype)
@@ -80,7 +81,7 @@ class Client(BaseApplication):
                     f" {quantity}@{price} {side}"
                 )
             elif exectype.getValue() == "0":
-                self.logger.info("Order placed successfully.")
+                self.logger.info("Order placed successfully.111111")
                 (
                     symbol,
                     price,

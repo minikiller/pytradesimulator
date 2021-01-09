@@ -5,7 +5,7 @@ import logging
 from time import sleep
 
 import click
-from modules.client import (Client, delete_order, fix, new_order,
+from modules.userclient import (UserClient, delete_order, fix, new_order,
                             replace_order, send)
 from modules.utils import setup_logging
 
@@ -47,7 +47,7 @@ def main(client_config="configs/client1.cfg", debug=None):
 
     settings = fix.SessionSettings(client_config)
     store = fix.FileStoreFactory(settings)
-    app = Client()
+    app = UserClient()
 
     app.set_logging(logger)
 

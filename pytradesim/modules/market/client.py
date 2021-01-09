@@ -26,6 +26,7 @@ class MarketDataClient(BaseApplication):
         return
 
     def toApp(self, message, sessionID):
+        print(message.__str__().replace("\x01", "|"))
         self.logger.debug(f"Sending {message} session {sessionID}")
 
     def fromApp(self, message, sessionID):
