@@ -34,11 +34,18 @@ ORDER_TABLE = {}
 
 
 class UserClient(BaseApplication):
+    sessionId = None
+
+    @staticmethod
+    def getSessionId():
+        return UserClient.sessionId
+
     def set_logging(self, logger):
         self.logger = logger
 
     def onCreate(self, sessionID):
         self.logger.info(f"Successfully created session {sessionID}.")
+        UserClient.sessionId = sessionID
         return
 
     def onLogon(self, sessionID):
@@ -53,7 +60,7 @@ class UserClient(BaseApplication):
         self.logger.debug(f"Sending {message} session {sessionID}")
 
     def fromApp(self, message, sessionID):
-        print("receive msg",message.__str__().replace('\x01','|'))
+        print("receive msg", message.__str__().replace('\x01', '|'))
         self.logger.info(f"Got message {message} for {sessionID}.")
     #     self.process(message, sessionID)
 
@@ -151,7 +158,7 @@ def get_order_id(sender_comp_id, symbol):
 
 
 def new_order(
-    sender_comp_id, target_comp_id, symbol, quantity, price, side, order_type,order_status
+    sender_comp_id, target_comp_id, symbol, quantity, price, side, order_type, order_status
 ):
     if side.lower() == "buy":
         side = fix.Side_BUY
@@ -174,7 +181,8 @@ def new_order(
     else:
         message.setField(fix.OrdType(fix.OrdType_LIMIT))
     # message.setField(fix.HandlInst(fix.HandlInst_MANUAL_ORDER_BEST_EXECUTION))
-    message.setField(fix.HandlInst(fix.HandlInst_AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION))
+    message.setField(fix.HandlInst(
+        fix.HandlInst_AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION))
 
     message.setField(fix.TransactTime())
     message.setField(fix.OrderQty(float(quantity)))
@@ -234,3 +242,30 @@ def send(message):
         fix.Session.sendToTarget(message)
     except fix.SessionNotFound:
         raise Exception(f"No session found {message}, exiting...")
+
+
+"""
+发送任何fix字符串给server，中间以\001分隔
+"""
+
+
+def test_order():
+    _str = "8=FIX.4.2\0019=296\00135=D\00134=26\00143=Y\00149=N2N\00150=ricky1\00152=20210111-05:39:30.899\00156=FEME\00157=G\001122=20210111-04:24:24.397\001142=MY\0011=B10013\00111=MY399400\00121=0\00138=1\00140=2\00144=3380.000000\00154=2\00155=1004\00159=0\00160=20210108-09:04:33.447\001107=FCPON1\001167=FUT\001204=1\0011028=Y\0011031=Y\0011603=global connect\0011604=3.0\0011605=N2N\0019702=4\0019717=MY399400\00110=056\001"
+    data_dictionary = fix.DataDictionary("spec/FIX42.xml")
+    message = Message()
+
+    message.setString(_str, True, data_dictionary)
+    # message = Message(_str, data_dictionary, False)
+    return message
+
+
+"""
+发送消息给sessionId
+"""
+
+
+def sendMsg(msg):
+    try:
+        fix.Session.sendToTarget(msg, UserClient.getSessionId())
+    except fix.SessionNotFound:
+        raise Exception(f"No session found {msg}, exiting...")

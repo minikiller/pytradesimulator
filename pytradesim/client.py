@@ -3,10 +3,12 @@
 import configparser
 import logging
 from time import sleep
+import quickfix as fix
 
 import click
-from modules.userclient import (UserClient, delete_order, fix, new_order,
-                            replace_order, send)
+from quickfix import Message
+from modules.userclient import (UserClient, delete_order,  new_order,
+                                replace_order, sendMsg, send, test_order)
 from modules.utils import setup_logging
 
 
@@ -66,6 +68,7 @@ def main(client_config="configs/client1.cfg", debug=None):
                     "\n1. New order"
                     "\n2. Replace order"
                     "\n3. Delete order"
+                    "\n4. Test order"
                     "\n> "
                 )
             )
@@ -108,6 +111,9 @@ def main(client_config="configs/client1.cfg", debug=None):
 
                 print("Sending delete order...")
                 send(message)
+            elif choice == 4:
+                message = test_order()
+                sendMsg(message)
 
         except KeyboardInterrupt:
             initiator.stop()
