@@ -49,3 +49,7 @@ https://github.com/quickfix/quickfix/blob/master/spec/FIX44.xml
 cd pytradesim
 python fixprinter.py --spec spec/FIX42.xml --f test.txt
 ```
+
+./client.py configs/client1.cfg
+
+./market_client.py configs/mdclient1.cfg -d

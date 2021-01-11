@@ -16,7 +16,7 @@ from modules.utils import setup_logging
     options_metavar="[options...]",
 )
 @click.argument(
-    "client_config", type=click.Path(exists=True), metavar="[client config]"
+    "client_config", type=click.Path(exists=True), metavar="[client config]", default="configs/mdclient1.cfg"
 )
 @click.option(
     "-d",

@@ -53,10 +53,11 @@ class UserClient(BaseApplication):
         self.logger.debug(f"Sending {message} session {sessionID}")
 
     def fromApp(self, message, sessionID):
+        print("receive msg",message.__str__().replace('\x01','|'))
         self.logger.info(f"Got message {message} for {sessionID}.")
-        self.process(message, sessionID)
+    #     self.process(message, sessionID)
 
-    def process(self, message, sessionID):
+    # def process(self, message, sessionID):
         self.logger.debug("Processing message.")
         print(message.__str__().replace("\x01", "|"))
         msgtype = fix.MsgType()
@@ -67,55 +68,55 @@ class UserClient(BaseApplication):
         if msgtype.getValue() == "8":
             if exectype.getValue() == "2":
                 self.logger.info("Trade received.")
-                (
-                    symbol,
-                    price,
-                    quantity,
-                    side,
-                    client_order_id,
-                    trade_exec_id,
-                    order_status,
-                ) = self.__get_attributes(message)
-                self.logger.info(
-                    f"Trade: {trade_exec_id}, {client_order_id} {symbol}"
-                    f" {quantity}@{price} {side}"
-                )
+                # (
+                #     symbol,
+                #     price,
+                #     quantity,
+                #     side,
+                #     client_order_id,
+                #     trade_exec_id,
+                #     order_status,
+                # ) = self.__get_attributes(message)
+                # self.logger.info(
+                #     f"Trade: {trade_exec_id}, {client_order_id} {symbol}"
+                #     f" {quantity}@{price} {side}"
+                # )
             elif exectype.getValue() == "0":
                 self.logger.info("Order placed successfully.111111")
-                (
-                    symbol,
-                    price,
-                    quantity,
-                    side,
-                    client_order_id,
-                    exec_id,
-                    order_status,
-                ) = self.__get_attributes(message)
+                # (
+                #     symbol,
+                #     price,
+                #     quantity,
+                #     side,
+                #     client_order_id,
+                #     exec_id,
+                #     order_status,
+                # ) = self.__get_attributes(message)
 
-                ORDERS[client_order_id.getValue()] = [symbol, price, quantity, side]
+                # ORDERS[client_order_id.getValue()] = [symbol, price, quantity, side]
 
-                self.logger.info(
-                    f"Order: {exec_id}, {client_order_id} {symbol}"
-                    f" {quantity}@{price} {side}"
-                )
+                # self.logger.info(
+                #     f"Order: {exec_id}, {client_order_id} {symbol}"
+                #     f" {quantity}@{price} {side}"
+                # )
             elif exectype.getValue() == "5":
                 self.logger.info("Order replaced successfully.")
-                (
-                    symbol,
-                    price,
-                    quantity,
-                    side,
-                    client_order_id,
-                    exec_id,
-                    order_status,
-                ) = self.__get_attributes(message)
+                # (
+                #     symbol,
+                #     price,
+                #     quantity,
+                #     side,
+                #     client_order_id,
+                #     exec_id,
+                #     order_status,
+                # ) = self.__get_attributes(message)
 
-                ORDERS[client_order_id.getValue()] = [symbol, price, quantity, side]
+                # ORDERS[client_order_id.getValue()] = [symbol, price, quantity, side]
 
-                self.logger.info(
-                    f"Order: {exec_id}, {client_order_id} {symbol}"
-                    f" {quantity}@{price} {side}"
-                )
+                # self.logger.info(
+                #     f"Order: {exec_id}, {client_order_id} {symbol}"
+                #     f" {quantity}@{price} {side}"
+                # )
 
     def __get_attributes(self, message):
         price = fix.LastPx()
@@ -150,7 +151,7 @@ def get_order_id(sender_comp_id, symbol):
 
 
 def new_order(
-    sender_comp_id, target_comp_id, symbol, quantity, price, side, order_type
+    sender_comp_id, target_comp_id, symbol, quantity, price, side, order_type,order_status
 ):
     if side.lower() == "buy":
         side = fix.Side_BUY
@@ -172,11 +173,14 @@ def new_order(
         message.setField(fix.OrdType(fix.OrdType_MARKET))
     else:
         message.setField(fix.OrdType(fix.OrdType_LIMIT))
-    message.setField(fix.HandlInst(fix.HandlInst_MANUAL_ORDER_BEST_EXECUTION))
+    # message.setField(fix.HandlInst(fix.HandlInst_MANUAL_ORDER_BEST_EXECUTION))
+    message.setField(fix.HandlInst(fix.HandlInst_AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION))
+
     message.setField(fix.TransactTime())
     message.setField(fix.OrderQty(float(quantity)))
+    # message.setField(fix.ExecType(0))
     message.setField(fix.Text(f"{side} {symbol} {quantity}@{price}"))
-
+    print(message)
     return message
 
 

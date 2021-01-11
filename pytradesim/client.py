@@ -15,7 +15,7 @@ from modules.utils import setup_logging
     options_metavar="[options...]",
 )
 @click.argument(
-    "client_config", type=click.Path(exists=True), metavar="[client config]"
+    "client_config", type=click.Path(exists=True), metavar="[client config]", default="configs/client1.cfg"
 )
 @click.option(
     "-d",
@@ -85,6 +85,7 @@ def main(client_config="configs/client1.cfg", debug=None):
                     price,
                     side,
                     order_type,
+                    0
                 )
 
                 print("Sending new order...")
