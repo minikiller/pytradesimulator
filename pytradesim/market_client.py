@@ -58,9 +58,16 @@ def main(client_config="configs/mdclient1.cfg", debug=None):
 
     sleep(1)
 
-    symbol = input("Enter symbol to subscribe: ")
-
-    app.market_data_request(sender_compid, target_compid, [symbol])
+    symbol = int(input("Enter choice: - "
+                       "\n1. request instruments"
+                       "\n2. Enter symbol to subscribe: hello"
+                       "\n> "))
+    # symbol = input("Enter symbol to subscribe: ")
+    if (symbol == 1):
+        app.security_definition_request(sender_compid, target_compid)
+    else:
+        symbol = "all"
+        app.market_data_request(sender_compid, target_compid, [symbol])
 
     try:
         while True:

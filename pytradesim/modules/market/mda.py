@@ -48,6 +48,8 @@ class MarketDataAdapter(BaseApplication):
         if msgtype.getValue() == "V":
             self.logger.info(f"Incoming MD request {sessionID}. Processing...")
             responses = self.market_data_request(message, sessionID)
+        else:
+            responses=None
 
         return responses
 

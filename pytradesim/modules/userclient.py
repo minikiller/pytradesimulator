@@ -1,5 +1,5 @@
 import quickfix as fix
-import quickfix42 as fix42
+import quickfix44 as fix44
 
 from .utils import Message
 
@@ -167,7 +167,11 @@ def new_order(
 
     message = Message()
     header = message.getHeader()
-    header.setField(fix.BeginString("FIX.4.2"))
+    header.setField(fix.BeginString("FIX.4.4"))
+    # header.setField(fix.BeginString("FIXT.1.1"))
+    
+    # header.setField(fix.BeginString("FIX.4.2"))
+    
     header.setField(fix.SenderCompID(sender_comp_id))
     header.setField(fix.TargetCompID(target_comp_id))
     header.setField(fix.MsgType("D"))
@@ -198,7 +202,7 @@ def replace_order(
     symbol = ORDERS[orig_client_order_id][0].getValue()
     side = ORDERS[orig_client_order_id][3].getValue()
 
-    message = fix42.OrderCancelReplaceRequest()
+    message = fix44.OrderCancelReplaceRequest()
     header = message.getHeader()
     header.setField(fix.SenderCompID(sender_comp_id))
     header.setField(fix.TargetCompID(target_comp_id))
@@ -222,7 +226,7 @@ def delete_order(sender_comp_id, target_comp_id, orig_client_order_id):
     symbol = ORDERS[orig_client_order_id][0].getValue()
     side = ORDERS[orig_client_order_id][3].getValue()
 
-    message = fix42.OrderCancelRequest()
+    message = fix44.OrderCancelRequest()
     header = message.getHeader()
     header.setField(fix.SenderCompID(sender_comp_id))
     header.setField(fix.TargetCompID(target_comp_id))
@@ -250,7 +254,9 @@ def send(message):
 
 
 def test_order():
-    _str = "8=FIX.4.2\0019=296\00135=D\00134=26\00143=Y\00149=N2N\00150=ricky1\00152=20210111-05:39:30.899\00156=FEME\00157=G\001122=20210111-04:24:24.397\001142=MY\0011=B10013\00111=MY399400\00121=0\00138=1\00140=2\00144=3380.000000\00154=2\00155=1004\00159=0\00160=20210108-09:04:33.447\001107=FCPON1\001167=FUT\001204=1\0011028=Y\0011031=Y\0011603=global connect\0011604=3.0\0011605=N2N\0019702=4\0019717=MY399400\00110=056\001"
+    # _str = "8=FIX.4.4\0019=267\00135=D\00134=1284\00149=N2N\00150=ricky1\00152=20210112-02:47:10.159\00156=FEME\00157=G\001142=MY\0011=B10013\00111=MY011206\00121=1\00138=2\00140=2\00144=3381.000000\00154=1\00155=1004\00159=0\00160=20210112-10:47:00.999\001107=FCPON1\001167=FUT\001204=1\0011028=Y\0011031=Y\0011603=global connect\0011604=3.0\0011605=N2N\0019702=4\0019717=MY011206\00110=118\001"
+    _str = "8=FIX.4.4\0019=127\00135=D\00149=CLIENT6\00156=FEME\00111=CLIENT6HEL-Apr211\00121=1\00138=2\00140=2\00144=100\00154=2\00155=HEL-Apr21\00158=2 HEL-Apr21 2@100\00160=20210115-12:29:05\00110=071\001"
+
     data_dictionary = fix.DataDictionary("spec/FIX42.xml")
     message = Message()
 

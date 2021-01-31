@@ -1,5 +1,5 @@
 import quickfix as fix
-import quickfix42 as fix42
+import quickfix44 as fix44
 
 from .utils import BaseApplication, Book
 
@@ -56,7 +56,7 @@ class MarketDataClient(BaseApplication):
 
             message.getField(entries)
 
-            group = fix42.MarketDataSnapshotFullRefresh().NoMDEntries()
+            group = fix44.MarketDataSnapshotFullRefresh().NoMDEntries()
 
             for i in range(entries.getValue()):
                 message.getGroup(i + 1, group)
@@ -75,10 +75,28 @@ class MarketDataClient(BaseApplication):
 
             print(book)
 
+    def security_definition_request(self, sender_comp_id, target_comp_id):
+        message = fix44.SecurityDefinitionRequest()
+        header = message.getHeader()
+        header.setField(fix.SenderCompID(sender_comp_id))
+        header.setField(fix.TargetCompID(target_comp_id))
+        message.setField(fix.SecurityReqID(self._generate_id()))
+        message.setField(fix.SecurityRequestType(fix.SecurityRequestType_REQUEST_LIST_SECURITIES))
+         
+        # group = fix44.SecurityDefinitionRequest().Instrument()
+        # Instrument 
+        # for md_type in md_types:
+        #     group.setField(fix.MDEntryType(md_type))
+        #     message.addGroup(group)
+        try:
+            fix.Session.sendToTarget(message)
+        except fix.SessionNotFound:
+            raise Exception(f"No session found {message}, exiting...")
+
     def market_data_request(self, sender_comp_id, target_comp_id, symbols):
         md_types = [fix.MDEntryType_BID, fix.MDEntryType_OFFER, fix.MDEntryType_TRADE]
 
-        message = fix42.MarketDataRequest()
+        message = fix44.MarketDataRequest()
 
         header = message.getHeader()
         header.setField(fix.SenderCompID(sender_comp_id))
@@ -90,15 +108,39 @@ class MarketDataClient(BaseApplication):
                 fix.SubscriptionRequestType_SNAPSHOT_PLUS_UPDATES
             )
         )
-        message.setField(fix.MarketDepth(10))
+        # message.setField(
+        #     fix.SubscriptionRequestType(
+        #         fix.SubscriptionRequestType_SNAPSHOT
+        #     )
+        # )
+        
+        """
+        Valid values:
 
-        group = fix42.MarketDataRequest().NoMDEntryTypes()
+        0 = Full Book
+
+        1 = Top of Book
+
+        N>1 = Report best N price tiers of data
+        """ 
+
+        message.setField(fix.MarketDepth(0))
+
+        """
+        Valid values:
+        0 = Full Refresh
+        1 = Incremental Refresh
+        """
+
+        message.setField(fix.MDUpdateType(fix.MDUpdateType_INCREMENTAL_REFRESH))
+
+        group = fix44.MarketDataRequest().NoMDEntryTypes()
 
         for md_type in md_types:
             group.setField(fix.MDEntryType(md_type))
             message.addGroup(group)
 
-        group = fix42.MarketDataRequest().NoRelatedSym()
+        group = fix44.MarketDataRequest().NoRelatedSym()
 
         for symbol in symbols:
             group.setField(fix.Symbol(symbol))
