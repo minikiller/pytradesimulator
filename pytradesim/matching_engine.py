@@ -37,7 +37,7 @@ def main(port=9000, debug=None):
         logger.setLevel(logging.INFO)
         logger.info(f"Logging set to info.")
 
-    settings = fix.SessionSettings("configs/exchange.cfg")
+    settings = fix.SessionSettings("configs/matching_engine.cfg")
     log = fix.FileLogFactory(settings)
     store = fix.FileStoreFactory(settings)
     app = MessageBroker()

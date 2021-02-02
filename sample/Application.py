@@ -2,7 +2,7 @@ import sys
 import os
 import time
 import quickfix as fix
-import quickfix42 as fix44
+import quickfix44 as fix44
 from datetime import datetime
 # import cPickle as p
 

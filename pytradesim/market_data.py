@@ -35,7 +35,7 @@ def main(port=9000, debug=None):
         logger.setLevel(logging.INFO)
         logger.info("Logging set to info.")
 
-    settings = fix.SessionSettings("configs/price.cfg")
+    settings = fix.SessionSettings("configs/market_data.cfg")
     log = fix.FileLogFactory(settings)
     store = fix.FileStoreFactory(settings)
     app = MarketDataAdapter()

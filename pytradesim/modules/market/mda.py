@@ -1,5 +1,5 @@
 import quickfix as fix
-import quickfix42 as fix42
+import quickfix44 as fix44
 
 from .utils import BaseApplication
 
@@ -55,7 +55,7 @@ class MarketDataAdapter(BaseApplication):
 
     def __add_client(self, message, sessionID):
         no_of_symbols = fix.NoRelatedSym()
-        no_related_symbols = fix42.MarketDataRequest().NoRelatedSym()
+        no_related_symbols = fix44.MarketDataRequest().NoRelatedSym()
         message.getField(no_of_symbols)
         symbol = fix.Symbol()
 
@@ -73,7 +73,7 @@ class MarketDataAdapter(BaseApplication):
 
     def __remove_client(self, message, sessionID):
         no_of_symbols = fix.NoRelatedSym()
-        no_related_symbols = fix42.MarketDataRequest.NoRelatedSym()
+        no_related_symbols = fix44.MarketDataRequest.NoRelatedSym()
         message.getField(no_of_symbols)
         symbol = fix.Symbol()
 
@@ -102,11 +102,11 @@ class MarketDataAdapter(BaseApplication):
         asks = book.asks
         trades = book.trades
 
-        message = fix42.MarketDataSnapshotFullRefresh()
+        message = fix44.MarketDataSnapshotFullRefresh()
 
         message.setField(fix.Symbol(symbol))
 
-        group = fix42.MarketDataSnapshotFullRefresh().NoMDEntries()
+        group = fix44.MarketDataSnapshotFullRefresh().NoMDEntries()
 
         if bids:
             for i in range(len(bids)):
