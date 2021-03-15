@@ -1,0 +1,87 @@
+appdirs==1.4.4
+argcomplete==1.12.2
+attrs @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/19/15/87/b7a64cd5788a0c95a04b2e96e1a2789eaf49ba9bf9c0f89984adc01c0c/attrs-19.3.0-py2.py3-none-any.whl
+autopep8==1.5.4
+boto3==1.16.56
+botocore==1.19.56
+CacheControl==0.12.6
+cachetools==4.2.0
+cachy==0.3.0
+certifi==2020.12.5
+cffi==1.14.4
+chardet==4.0.0
+cleo==0.8.1
+click @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/d7/7a/80/5f1179ca788001980ad7b54c194d1f0e7e8802c7b6fdda9fbf27eb289e/click-7.1.1-py2.py3-none-any.whl
+clikit==0.6.2
+crashtest==0.3.1
+cryptography==3.3.1
+determined-cli==0.13.12
+determined-common==0.13.12
+distlib==0.3.1
+docopt==0.6.2
+docutils @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/9e/78/f1/81f20d21f3ed304c86fa5394fadbb173e75ad363029a8fefa635dadf2e/docutils-0.16-py2.py3-none-any.whl
+entrypoints @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/27/67/42/5ca7438658f76c8700ff6c44ea1cf9dc128cf0862adb7de53d3a35266c/entrypoints-0.3-py2.py3-none-any.whl
+filelock==3.0.12
+flake8 @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/13/2b/b4/6af68153bb5982c18c55f3569ae3a8ed0cbf33d40321e4d159da2d1832/flake8-3.7.9-py2.py3-none-any.whl
+gitdb==4.0.5
+GitPython==3.1.12
+google-api-core==1.25.0
+google-auth==1.24.0
+google-cloud-core==1.4.1
+google-cloud-storage==1.35.0
+google-crc32c==1.1.1
+google-resumable-media==1.2.0
+googleapis-common-protos==1.52.0
+hdfs==2.5.8
+html5lib==1.1
+idna==2.10
+jmespath==0.10.0
+keyring==21.8.0
+lockfile==0.12.2
+lomond==0.3.3
+mccabe @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/37/6e/69/4a33a4d6c80c775b1ee205face2c6e07b762c8602bb0f0d236ebe790c5/mccabe-0.6.1-py2.py3-none-any.whl
+more-itertools @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/e9/33/70/7e30e8e807be3eb84d0ca99533cbd369bbfae4773793d16a0e19326f58/more_itertools-8.2.0-py3-none-any.whl
+msgpack==1.0.2
+packaging @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/42/04/21/7d2ee9554c7bc629d902517ad122c87f90fef8b69882300543868505f2/packaging-20.3-py2.py3-none-any.whl
+pastel==0.2.1
+pathspec==0.8.1
+pexpect==4.8.0
+pkginfo==1.6.1
+pluggy @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/9c/e5/0b/2d64d03361a081edeb5d2ec5f286ccf9719587781fbf6822e1b6384c27/pluggy-0.13.1-py2.py3-none-any.whl
+poetry==1.1.4
+poetry-core==1.0.0
+prettytable @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/a5/01/95/3f73fd12ee32af6e35668c767addbc38f9c733d90fcce2aecb1220c41d/prettytable-1.0.1-py2.py3-none-any.whl
+protobuf==3.14.0
+ptyprocess==0.7.0
+py @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/76/9c/b6/177ef04b806807211578961f875a9210a1b3f73a98fb13a8b09c2bd9a1/py-1.8.1-py2.py3-none-any.whl
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycodestyle==2.6.0
+pycparser==2.20
+pyflakes @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/79/23/0d/54daaab41b1a80173320edc90495cf953e9070aaa71792f0b839c470df/pyflakes-2.1.1-py2.py3-none-any.whl
+pylev==1.3.0
+pyOpenSSL==20.0.1
+pyparsing==2.4.7
+pytest @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/a5/27/e6/72485085cddb48a5c8dae0a3b541407e72cf40eea427709164588845d8/pytest-5.4.1-py3-none-any.whl
+python-dateutil==2.8.1
+pytradesim==0.1.3
+pytz==2020.5
+quickfix==1.15.1
+requests==2.25.1
+requests-toolbelt==0.9.1
+rsa==4.7
+ruamel.yaml==0.16.12
+ruamel.yaml.clib==0.2.2
+s3transfer==0.3.4
+shellingham==1.3.2
+simplejson==3.17.2
+six @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/bc/ce/4c/f0ffc17d7b5679322fbe13d89086d5ad570a5176dfe3267a3593d6b829/six-1.14.0-py2.py3-none-any.whl
+smmap==3.0.4
+tabulate==0.8.7
+termcolor==1.1.0
+toml==0.10.2
+tomlkit==0.7.0
+urllib3==1.25.11
+virtualenv==20.2.2
+wcwidth @ file:///Users/sunlingfeng/Library/Caches/pypoetry/artifacts/a2/e3/cc/b9813297e7f1a3597bf00aacef95fc7bfef794a0b3971eae3afa174184/wcwidth-0.1.9-py2.py3-none-any.whl
+webencodings==0.5.1

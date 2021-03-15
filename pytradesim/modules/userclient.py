@@ -2,6 +2,7 @@ import quickfix as fix
 import quickfix44 as fix44
 
 from .utils import Message
+from time import sleep
 
 ORDERS = {}
 
@@ -241,6 +242,30 @@ def delete_order(sender_comp_id, target_comp_id, orig_client_order_id):
     return message
 
 
+def send_bat_order():
+    step1 = "8=FIX.4.4\0019=142\00135=D\00134=69\00149=N2N\00152=20210206-02:12:04.215\00156=FEME\00111=1612577524199\00121=1\00138=1\00140=2\00144=111.25\00154=1\00155=FMG3-DEC20\00159=0\00160=20210206-02:12:04.212\00110=073\001"
+    step2 = "8=FIX.4.4\0019=142\00135=D\00134=70\00149=N2N\00152=20210206-02:13:21.524\00156=FEME\00111=1612577601535\00121=1\00138=1\00140=2\00144=110.15\00154=2\00155=FMG3-MAR21\00159=0\00160=20210206-02:13:21.523\00110=083\001"
+    step3 = "8=FIX.4.4\0019=145\00135=D\00134=71\00149=N2N\00152=20210206-02:14:03.572\00156=FEME\00111=1612577643586\00121=1\00138=1\00140=2\00144=1.5\00154=2\00155=FMG3-DEC20-MAR21\00159=0\00160=20210206-02:14:03.572\00110=053\001"
+    step4 = "8=FIX.4.4\0019=142\00135=D\00134=72\00149=N2N\00152=20210206-02:17:14.602\00156=FEME\00111=1612577834617\00121=1\00138=1\00140=2\00144=109.95\00154=1\00155=FMG3-JUN21\00159=0\00160=20210206-02:17:14.602\00110=129\001"
+    step5 = "8=FIX.4.4\0019=142\00135=D\00134=73\00149=N2N\00152=20210206-02:18:59.381\00156=FEME\00111=1612577939399\00121=1\00138=1\00140=2\00144=109.35\00154=2\00155=FMG3-MAR21\00159=0\00160=20210206-02:18:59.381\00110=153\001"
+    
+    data_dictionary = fix.DataDictionary("spec/FIX42.xml")
+    message = Message()
+
+    message.setString(step1, True, data_dictionary)
+    send(message)
+    sleep(1)
+    message.setString(step2, True, data_dictionary)
+    send(message)
+    sleep(1)
+    message.setString(step3, True, data_dictionary)
+    send(message)
+    sleep(1)
+    message.setString(step4, True, data_dictionary)
+    send(message)
+    sleep(1)
+    # message.setString(step5, True, data_dictionary)
+
 def send(message):
     try:
         fix.Session.sendToTarget(message)
@@ -263,6 +288,8 @@ def test_order():
     message.setString(_str, True, data_dictionary)
     # message = Message(_str, data_dictionary, False)
     return message
+
+ 
 
 
 """

@@ -60,7 +60,7 @@ def main(port=9000, debug=None):
             if MARKETS:
                 for market in MARKETS:
                     # remove the comment below to print debug orderbook
-                    # logger.debug(f"\n{MARKETS[market]._show_orderbook()}")
+                    logger.debug(f"\n{MARKETS[market]._show_orderbook()}")
                     if market in FLUSH_BOOK:
                         bids, asks = MARKETS[market].book()
                         trades = []

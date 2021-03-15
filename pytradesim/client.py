@@ -8,7 +8,7 @@ import quickfix as fix
 import click
 from quickfix import Message
 from modules.userclient import (UserClient, delete_order,  new_order,
-                                replace_order, sendMsg, send, test_order)
+                                replace_order, sendMsg, send, test_order, send_bat_order)
 from modules.utils import setup_logging
 
 
@@ -69,6 +69,7 @@ def main(client_config="configs/client1.cfg", debug=None):
                     "\n2. Replace order"
                     "\n3. Delete order"
                     "\n4. Test order"
+                    "\n5. Test batch order"
                     "\n> "
                 )
             )
@@ -114,6 +115,8 @@ def main(client_config="configs/client1.cfg", debug=None):
             elif choice == 4:
                 message = test_order()
                 sendMsg(message)
+            elif choice == 5:
+                send_bat_order()
 
         except KeyboardInterrupt:
             initiator.stop()

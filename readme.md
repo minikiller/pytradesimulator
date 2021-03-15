@@ -47,7 +47,8 @@ https://github.com/quickfix/quickfix/blob/master/spec/FIX44.xml
 ### print fix message
 ```
 cd pytradesim
-python fixprinter.py --spec spec/FIX44.xml --f test.txt
+python fixprinter.py --spec spec/FIX50SP2.xml --f test.txt
+python fixprinter.py --spec spec/FIX42.xml --f test.txt
 ```
 ```
 ./client.py configs/client1.cfg
@@ -79,4 +80,9 @@ python fixprinter.py --spec spec/FIX44.xml --f test.txt
 ### instrument request
 ```
 8=FIX.4.4|9=82|35=c|34=7|49=MDCLIENT1|52=20210130-03:15:07.000000|56=FEME|320=TESTREQUEST1|321=3|10=154|
+```
+
+### stop a java program
+```
+https://stackoverflow.com/questions/44062326/how-to-kill-a-java-process-by-name-in-python
 ```
